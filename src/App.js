@@ -68,7 +68,7 @@ function App() {
 						})}
 					</div>
 					<div className="pager">
-						<button disable={page === 1} className="prev" onClick={handlePrev}>
+						<button disabled={page === 1} className="prev" onClick={handlePrev}>
 							Previous
 						</button>
 						<span className="page-number">{page}</span>
