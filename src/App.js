@@ -4,6 +4,7 @@ import axios from "axios";
 
 function App() {
 	const [characters, setCharacters] = useState([]);
+	const [page, setPage] = useState(1);
 	useEffect(() => {
 		fetchCharacters();
 	}, []);
@@ -14,6 +15,11 @@ function App() {
 		const result = await axios.get(apiUrl, { params: { page } });
 
 		setCharacters(result.data.characters);
+	};
+	const handleNext = async () => {
+		const nextPage = page + 1;
+		await fetchCharacters(nextPage);
+		setPage(nextPage);
 	};
 	return (
 		<div className="container">
@@ -48,8 +54,10 @@ function App() {
 				</div>
 				<div className="pager">
 					<button className="prev">Previous</button>
-					<span className="page-number">1</span>
-					<button className="next">Next</button>
+					<span className="page-number">{page}</span>
+					<button className="next" onClick={handleNext}>
+						Next
+					</button>
 				</div>
 			</main>
 		</div>
